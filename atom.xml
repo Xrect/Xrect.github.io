@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>乙冗</title>
+  
+  
+  <link href="https://xrect.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://xrect.github.io/"/>
+  <updated>2022-01-26T06:09:09.156Z</updated>
+  <id>https://xrect.github.io/</id>
+  
+  <author>
+    <name>Xrect</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android运行时权限</title>
+    <link href="https://xrect.github.io/2022/01/26/Android%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90/"/>
+    <id>https://xrect.github.io/2022/01/26/Android%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90/</id>
+    <published>2022-01-26T04:42:38.000Z</published>
+    <updated>2022-01-26T06:09:09.156Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>在低于6.0的设备上安装程序时，会出现该程序一共申请了哪些权限，从而决定是否要安装这个程序。但常用软件的滥用权限，又必须要安装，导致“店大欺客”。</p><p>为防止常用软件”店大欺客“,更好地保护用户安全和隐私，Android团队在<code>Android6.0</code>系统引用了<strong>运行时权限</strong>。</p><blockquote><p>即用户不需要在安装软件时一次性授权所有申请的权限，而是可以在软件的使用过程中再对某一项权限申请进行授权。</p></blockquote><p>Android将所有权限归为两类：</p><ul><li><p>普通权限</p><blockquote><p>不会直接威胁到用户安全和隐私的权限，系统会自动帮我们进行授权</p></blockquote></li><li><p>危险权限</p><blockquote><p>可能触及用户隐私或者对设备安全性造成影响的权限，需要用户点击授权</p></blockquote></li></ul><h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*打电话</span></span><br><span class="line"><span class="comment">布局只有一个按钮</span></span><br><span class="line"><span class="comment">Manifest.xml中添加&lt;uses-permission android:name=&quot;android.permission.CALL_PHONE&quot;/&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//核心代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Button button;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"><span class="comment">//绑定按钮</span></span><br><span class="line">        button = findViewById(R.id.button);</span><br><span class="line">        button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//  判断是否已经授权，没有授权就申请授权</span></span><br><span class="line">                <span class="keyword">if</span> (ContextCompat.checkSelfPermission(MainActivity.<span class="keyword">this</span>, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">                    ActivityCompat.requestPermissions(MainActivity.<span class="keyword">this</span>, <span class="keyword">new</span> String[]&#123;Manifest.permission.CALL_PHONE&#125;, <span class="number">1</span>);</span><br><span class="line">                <span class="comment">//  授权了就直接去打电话</span></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    call();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//隐式Intent</span></span><br><span class="line">            Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_CALL);</span><br><span class="line">            <span class="comment">//data部分指定了协议是tel，号码为10086</span></span><br><span class="line">            intent.setData(Uri.parse(<span class="string">&quot;tel:10086&quot;</span>));</span><br><span class="line">            startActivity(intent);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SecurityException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode, <span class="meta">@NonNull</span> String[] permissions, <span class="meta">@NonNull</span> <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (requestCode) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                <span class="keyword">if</span> (grantResults.length &gt; <span class="number">0</span> &amp;&amp; grantResults[<span class="number">0</span>] == PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">                    call();</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    Toast.makeText(<span class="keyword">this</span>, <span class="string">&quot;You denied the permisssion&quot;</span>, Toast.LENGTH_SHORT).show();</span><br><span class="line">                &#125; <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;背景介绍&quot;&gt;&lt;a href=&quot;#背景介绍&quot; class=&quot;headerlink&quot; title=&quot;背景介绍&quot;&gt;&lt;/a&gt;背景介绍&lt;/h1&gt;&lt;p&gt;在低于6.0的设备上安装程序时，会出现该程序一共申请了哪些权限，从而决定是否要安装这个程序。但常用软件的滥用权限，又必须要安</summary>
+      
+    
+    
+    
+    <category term="Android学习" scheme="https://xrect.github.io/categories/Android%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Android" scheme="https://xrect.github.io/tags/Android/"/>
+    
+    <category term="权限" scheme="https://xrect.github.io/tags/%E6%9D%83%E9%99%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Content Provider</title>
+    <link href="https://xrect.github.io/2022/01/25/Content-Provider/"/>
+    <id>https://xrect.github.io/2022/01/25/Content-Provider/</id>
+    <published>2022-01-25T09:51:00.000Z</published>
+    <updated>2022-01-26T04:51:04.705Z</updated>
+    
+    <content type="html"><![CDATA[<p>内容提供器(Content Provider)主要用于在不同的应用程序之间实现数据共享功能，它提供了一套完整的机制，允许一个程序访问另一个程序中的数据，同时还能保证被访问数据的安全性。</p><blockquote><p>不同于文件存储和<code>SharedPreferences</code>存储中的两种可读写操作模式，内容提供器可以选择只对哪一部分数据进行共享，从而保证我们程序中的隐私不会有泄露的风险</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;内容提供器(Content Provider)主要用于在不同的应用程序之间实现数据共享功能，它提供了一套完整的机制，允许一个程序访问另一个程序中的数据，同时还能保证被访问数据的安全性。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不同于文件存储和&lt;code&gt;SharedPref</summary>
+      
+    
+    
+    
+    <category term="Android学习" scheme="https://xrect.github.io/categories/Android%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Android" scheme="https://xrect.github.io/tags/Android/"/>
+    
+    <category term="四大组件" scheme="https://xrect.github.io/tags/%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/"/>
+    
+    <category term="内容提供器" scheme="https://xrect.github.io/tags/%E5%86%85%E5%AE%B9%E6%8F%90%E4%BE%9B%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Intent</title>
+    <link href="https://xrect.github.io/2022/01/20/Intent/"/>
+    <id>https://xrect.github.io/2022/01/20/Intent/</id>
+    <published>2022-01-20T05:19:18.000Z</published>
+    <updated>2022-01-20T12:37:58.450Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Intent和Intent过滤器"><a href="#Intent和Intent过滤器" class="headerlink" title="Intent和Intent过滤器"></a>Intent和Intent过滤器</h1><p><code>Intent</code>是一个消息传递对象，可以从其他应用组件请求操作，常分为显示Intent和隐式Intent</p><h2 id="显式Intent"><a href="#显式Intent" class="headerlink" title="显式Intent"></a>显式Intent</h2><p>通过提供目标应用的软件包名称或完全限定的组件类名来指定可处理<code>Intent</code>的应用。</p><p>一般，会在自己的应用中使用<code>显式Intent</code>来启动组件，这是因为知道要启动的 <code>Activity</code>或服务的类名。例如，启动应用内的新 Activity 以响应用户操作，或者启动服务以在后台下载文件。所以，</p><blockquote><p><code>显式Intent</code>多用在App内部的跳转</p></blockquote><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p><strong>内部Activity跳转</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//跳转到下一个Activity  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//1. 构建Intent</span></span><br><span class="line"><span class="comment">//Intent 对象携带 Android 系统用来确定要启动哪个组件的信息,，以及收件人组件为了正确执行操作而使用的信息</span></span><br><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, SecondActivity.class);</span><br><span class="line"><span class="comment">// 2. 启动Activity</span></span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure><h2 id="隐式Intent"><a href="#隐式Intent" class="headerlink" title="隐式Intent"></a>隐式Intent</h2><p>不指定特定的组件，而是声明要执行的常规操作，从而允许其他应用中的组件来处理。</p><p>例如，如果要在地图上向用户显示位置，则可以使用隐式 Intent，请求另一具有此功能的应用（可能有多个应用符合，然后让用户选择）在地图上显示指定的位置。所以，</p><blockquote><p><code>隐式Intent</code>多用在跨APP之间</p></blockquote><h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><p><strong>共享文本</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*一个EditText和一个Button，输入文本，单击Button会显示分享文本 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//绑定控件之后,获取输入框内容</span></span><br><span class="line">String text = editText_text.getText().toString();</span><br><span class="line"><span class="comment">//定义要共享的文本的 MIME 类型：</span></span><br><span class="line">String mimeType = <span class="string">&quot;text/plain&quot;</span>;</span><br><span class="line"></span><br><span class="line">ShareCompat.IntentBuilder</span><br><span class="line">                .from(<span class="keyword">this</span>)<span class="comment">//Activity启动此共享的Intent（this）。</span></span><br><span class="line">    .setType(mimeType)<span class="comment">// 要共享的项目的 MIME 类型。</span></span><br><span class="line">                .setChooserTitle(<span class="string">&quot;Share this text with:&quot;</span>) <span class="comment">// 出现在系统应用选择器上的标题。</span></span><br><span class="line">                .setText(text)    <span class="comment">// 要共享的实际文本</span></span><br><span class="line">                .startChooser();  <span class="comment">// 显示系统应用程序选择器并发送Intent.</span></span><br></pre></td></tr></table></figure><p><strong>注</strong>：<a href="https://baike.baidu.com/item/MIME/2900607?fr=aladdin">MIME</a></p><p><strong>打开浏览器</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*一个EditText和一个Button，输入网址，单击Button会打开浏览器显示该网站信息 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//绑定控件之后,获取输入框内容</span></span><br><span class="line">String url = editText_website.getText().toString();</span><br><span class="line"><span class="comment">//  将该字符串编码并解析为 Uri 对象：</span></span><br><span class="line">Uri webpage = Uri.parse(url);</span><br><span class="line"></span><br><span class="line"><span class="comment">//  ACTION_VIEW（查看给定数据）</span></span><br><span class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW, webpage);</span><br><span class="line"></span><br><span class="line"><span class="comment">//  使用该resolveActivity()方法和 Android 包管理器找到一个Activity可以处理的隐式Intent. 确保请求成功解决。</span></span><br><span class="line"><span class="comment">//  该请求将你的Intent操作和数据与Intent设备上已安装应用程序的过滤器相匹配。使用它来确保至少有一个Activity可以处理你的请求。</span></span><br><span class="line"><span class="keyword">if</span> (intent.resolveActivity(getPackageManager()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">    startActivity(intent);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    Log.d(<span class="string">&quot;ImplicitIntents&quot;</span>, <span class="string">&quot;Can&#x27;t handle this!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>接收链接请求信息</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//新建一个项目,不同于上面两个同属一个项目，</span></span><br><span class="line"><span class="comment">//一个TextView文本，接收到上一个程序打开浏览器的请求，把TextView显示为刚刚输入的网址</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在OnCreate()中加入如下内容</span></span><br><span class="line"></span><br><span class="line">Intent intent = getIntent();</span><br><span class="line">        <span class="comment">//  获取Intent数据,Intentdata 始终是一个 URI 对象：</span></span><br><span class="line">        Uri uri = intent.getData();</span><br><span class="line">        <span class="comment">//  检查以确保uri变量不是null. 如果该检查通过，则从该 URI 对象创建一个字符串：</span></span><br><span class="line">        <span class="keyword">if</span> (uri != <span class="keyword">null</span>) &#123;</span><br><span class="line">            String uri_string = <span class="string">&quot;URI:&quot;</span> + uri.toString();</span><br><span class="line">            <span class="comment">//绑定控件</span></span><br><span class="line">            TextView textView = findViewById(R.id.textView);</span><br><span class="line">            textView.setText(uri_string);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//  &quot;URI: &quot;将上述部分提取到字符串资源 ( uri_label) 中。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><p>修改<code>AndroidManifest</code>清单文件</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--在AndroidManifest清单文件中，更改该程序的权限 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--     任何具有action.VIEW的Intent           --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.VIEW&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--     任何隐式的Intent。必须包含此类别才能使Activity接收到隐含的Intent --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.DEFAULT&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--      来自网页、电子邮件或其他来源的可浏览链接请求。          --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.BROWSABLE&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--      协议为http 和主机名的URI developer.android.com。          --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--      添加下面的data后，对链接有限制，只有收到http://devloper.android.com，该程序才会有反应;  不然启动上一个程序的打开浏览器，只会打开默认浏览器 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">&quot;http&quot;</span> <span class="attr">android:host</span>=<span class="string">&quot;developer.android.com&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br></pre></td></tr></table></figure><h2 id="Intent主要用途："><a href="#Intent主要用途：" class="headerlink" title="Intent主要用途："></a>Intent主要用途：</h2><ol><li>启动Activity     </li><li>启动服务</li><li>传递广播</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Intent和Intent过滤器&quot;&gt;&lt;a href=&quot;#Intent和Intent过滤器&quot; class=&quot;headerlink&quot; title=&quot;Intent和Intent过滤器&quot;&gt;&lt;/a&gt;Intent和Intent过滤器&lt;/h1&gt;&lt;p&gt;&lt;code&gt;Intent&lt;/</summary>
+      
+    
+    
+    
+    <category term="Android学习" scheme="https://xrect.github.io/categories/Android%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Android" scheme="https://xrect.github.io/tags/Android/"/>
+    
+    <category term="Intent" scheme="https://xrect.github.io/tags/Intent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SharedPreferences存储</title>
+    <link href="https://xrect.github.io/2022/01/19/SharedPreferences%E5%AD%98%E5%82%A8/"/>
+    <id>https://xrect.github.io/2022/01/19/SharedPreferences%E5%AD%98%E5%82%A8/</id>
+    <published>2022-01-19T09:13:05.000Z</published>
+    <updated>2022-01-19T09:48:06.823Z</updated>
+    
+    <content type="html"><![CDATA[<p>SharedPreferences使用键值对的方式来存储数据,支持多种不同的数据类型（整型，字符串，布尔类型）</p><p>多用来存储应用偏好</p><h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;SharedPreferences使用键值对的方式来存储数据,支持多种不同的数据类型（整型，字符串，布尔类型）&lt;/p&gt;
+&lt;p&gt;多用来存储应用偏好&lt;/p&gt;
+&lt;h1 id=&quot;用法&quot;&gt;&lt;a href=&quot;#用法&quot; class=&quot;headerlink&quot; title=&quot;用法&quot;&gt;&lt;/a&gt;</summary>
+      
+    
+    
+    
+    <category term="Android学习" scheme="https://xrect.github.io/categories/Android%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Android" scheme="https://xrect.github.io/tags/Android/"/>
+    
+    <category term="SharedPreferences" scheme="https://xrect.github.io/tags/SharedPreferences/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Toast用法</title>
+    <link href="https://xrect.github.io/2022/01/18/Toast%E7%94%A8%E6%B3%95/"/>
+    <id>https://xrect.github.io/2022/01/18/Toast%E7%94%A8%E6%B3%95/</id>
+    <published>2022-01-18T03:02:18.000Z</published>
+    <updated>2022-01-19T09:15:14.481Z</updated>
+    
+    
+    
+    
+    <category term="Android学习" scheme="https://xrect.github.io/categories/Android%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Android" scheme="https://xrect.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android Studio使用Logcat打印日志</title>
+    <link href="https://xrect.github.io/2022/01/17/Android-Studio%E4%BD%BF%E7%94%A8Logcat%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/"/>
+    <id>https://xrect.github.io/2022/01/17/Android-Studio%E4%BD%BF%E7%94%A8Logcat%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/</id>
+    <published>2022-01-17T09:34:32.000Z</published>
+    <updated>2022-01-17T11:37:06.620Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="常用日志方法"><a href="#常用日志方法" class="headerlink" title="常用日志方法"></a>常用日志方法</h2><p><strong>方法优先级从高到低：</strong></p><ul><li><p><code>Log.e(String tag, String message)</code>（error）</p><blockquote><p>错误,    tag 表示打印时的标签，用于过滤信息； message一般写为msg 表示打印内容</p></blockquote></li><li><p><code>Log.w(String tag, String message)</code>（warning）</p><blockquote><p>警告</p></blockquote></li><li><p><code>Log.i(String tag, String message)</code>（info）</p><blockquote><p>信息</p></blockquote></li><li><p><code>Log.d(String tag, String message)</code>（debug）</p><blockquote><p>调试</p></blockquote></li><li><p><code>Log.v(String tag, String message)</code>（verbose 冗长的，啰嗦的）</p><blockquote><p>无关紧要     </p></blockquote><p><strong>注意：</strong> </p><blockquote><p>除开发期间，其他任何时候都不应将详细日志编译到您的应用中。虽然会编译调试日志，但会在运行时将其去掉，而错误、警告和信息日志会始终保留。</p></blockquote><p>Debug</p><blockquote><p>Debug是跟踪程序流程的一种模式，可以通过在代码处设置断点，再利用Debug窗口查看，所谓断点是在代码行加入停止点，当程序执行到该行时会暂停，开发者可以从中查看到此行的变量、数值和内容等。</p></blockquote></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;常用日志方法&quot;&gt;&lt;a href=&quot;#常用日志方法&quot; class=&quot;headerlink&quot; title=&quot;常用日志方法&quot;&gt;&lt;/a&gt;常用日志方法&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;方法优先级从高到低：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Log.</summary>
+      
+    
+    
+    
+    <category term="Android学习" scheme="https://xrect.github.io/categories/Android%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Android" scheme="https://xrect.github.io/tags/Android/"/>
+    
+    <category term="Logcat" scheme="https://xrect.github.io/tags/Logcat/"/>
+    
+    <category term="日志" scheme="https://xrect.github.io/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+</feed>

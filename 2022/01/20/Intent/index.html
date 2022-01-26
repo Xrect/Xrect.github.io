@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Intent | 乙冗</title><meta name="keywords" content="Android,Intent"><meta name="author" content="Xrect"><meta name="copyright" content="Xrect"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Intent和Intent过滤器Intent是一个消息传递对象，可以从其他应用组件请求操作，常分为显示Intent和隐式Intent 显式Intent通过提供目标应用的软件包名称或完全限定的组件类名来指定可处理Intent的应用。 一般，会在自己的应用中使用显式Intent来启动组件，这是因为知道要启动的 Activity或服务的类名。例如，启动应用内的新 Activity 以响应用户操作，或者启">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Intent">
+<meta property="og:url" content="https://xrect.github.io/2022/01/20/Intent/index.html">
+<meta property="og:site_name" content="乙冗">
+<meta property="og:description" content="Intent和Intent过滤器Intent是一个消息传递对象，可以从其他应用组件请求操作，常分为显示Intent和隐式Intent 显式Intent通过提供目标应用的软件包名称或完全限定的组件类名来指定可处理Intent的应用。 一般，会在自己的应用中使用显式Intent来启动组件，这是因为知道要启动的 Activity或服务的类名。例如，启动应用内的新 Activity 以响应用户操作，或者启">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2022-01-20T05:19:18.000Z">
+<meta property="article:modified_time" content="2022-01-20T12:37:58.450Z">
+<meta property="article:author" content="Xrect">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Intent">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/gallery/favicon.jpg"><link rel="canonical" href="https://xrect.github.io/2022/01/20/Intent/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-G-9SD90XBFXE"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-G-9SD90XBFXE');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Intent',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-20 20:37:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="乙冗" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/gallery/yr.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">乙冗</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Intent</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-20T05:19:18.000Z" title="发表于 2022-01-20 13:19:18">2022-01-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-20T12:37:58.450Z" title="更新于 2022-01-20 20:37:58">2022-01-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Android%E5%AD%A6%E4%B9%A0/">Android学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Intent"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Intent和Intent过滤器"><a href="#Intent和Intent过滤器" class="headerlink" title="Intent和Intent过滤器"></a>Intent和Intent过滤器</h1><p><code>Intent</code>是一个消息传递对象，可以从其他应用组件请求操作，常分为显示Intent和隐式Intent</p>
+<h2 id="显式Intent"><a href="#显式Intent" class="headerlink" title="显式Intent"></a>显式Intent</h2><p>通过提供目标应用的软件包名称或完全限定的组件类名来指定可处理<code>Intent</code>的应用。</p>
+<p>一般，会在自己的应用中使用<code>显式Intent</code>来启动组件，这是因为知道要启动的 <code>Activity</code>或服务的类名。例如，启动应用内的新 Activity 以响应用户操作，或者启动服务以在后台下载文件。所以，</p>
+<blockquote>
+<p><code>显式Intent</code>多用在App内部的跳转</p>
+</blockquote>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p><strong>内部Activity跳转</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//	跳转到下一个Activity  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//	1. 构建Intent</span></span><br><span class="line"><span class="comment">//	Intent 对象携带 Android 系统用来确定要启动哪个组件的信息,，以及收件人组件为了正确执行操作而使用的信息</span></span><br><span class="line">Intent intent = <span class="keyword">new</span> Intent(<span class="keyword">this</span>, SecondActivity.class);</span><br><span class="line"><span class="comment">// 	2. 启动Activity</span></span><br><span class="line">startActivity(intent);</span><br></pre></td></tr></table></figure>
+
+<h2 id="隐式Intent"><a href="#隐式Intent" class="headerlink" title="隐式Intent"></a>隐式Intent</h2><p>不指定特定的组件，而是声明要执行的常规操作，从而允许其他应用中的组件来处理。</p>
+<p>例如，如果要在地图上向用户显示位置，则可以使用隐式 Intent，请求另一具有此功能的应用（可能有多个应用符合，然后让用户选择）在地图上显示指定的位置。所以，</p>
+<blockquote>
+<p><code>隐式Intent</code>多用在跨APP之间</p>
+</blockquote>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><p><strong>共享文本</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*	一个EditText和一个Button，输入文本，单击Button会显示分享文本 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//	绑定控件之后,获取输入框内容</span></span><br><span class="line">String text = editText_text.getText().toString();</span><br><span class="line"><span class="comment">//	定义要共享的文本的 MIME 类型：</span></span><br><span class="line">String mimeType = <span class="string">&quot;text/plain&quot;</span>;</span><br><span class="line"></span><br><span class="line">ShareCompat.IntentBuilder</span><br><span class="line">                .from(<span class="keyword">this</span>)			<span class="comment">//	Activity启动此共享的Intent（this）。</span></span><br><span class="line">    			.setType(mimeType)	<span class="comment">// 要共享的项目的 MIME 类型。</span></span><br><span class="line">                .setChooserTitle(<span class="string">&quot;Share this text with:&quot;</span>) <span class="comment">// 出现在系统应用选择器上的标题。</span></span><br><span class="line">                .setText(text)    <span class="comment">// 要共享的实际文本	</span></span><br><span class="line">                .startChooser();  <span class="comment">// 显示系统应用程序选择器并发送Intent.</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong>：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/MIME/2900607?fr=aladdin">MIME</a></p>
+<p><strong>打开浏览器</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*	一个EditText和一个Button，输入网址，单击Button会打开浏览器显示该网站信息 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//	绑定控件之后,获取输入框内容</span></span><br><span class="line">String url = editText_website.getText().toString();</span><br><span class="line"><span class="comment">//  将该字符串编码并解析为 Uri 对象：</span></span><br><span class="line">Uri webpage = Uri.parse(url);</span><br><span class="line"></span><br><span class="line"><span class="comment">//  ACTION_VIEW（查看给定数据）</span></span><br><span class="line">Intent intent = <span class="keyword">new</span> Intent(Intent.ACTION_VIEW, webpage);</span><br><span class="line"></span><br><span class="line"><span class="comment">//  使用该resolveActivity()方法和 Android 包管理器找到一个Activity可以处理的隐式Intent. 确保请求成功解决。</span></span><br><span class="line"><span class="comment">//  该请求将你的Intent操作和数据与Intent设备上已安装应用程序的过滤器相匹配。使用它来确保至少有一个Activity可以处理你的请求。</span></span><br><span class="line"><span class="keyword">if</span> (intent.resolveActivity(getPackageManager()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">    startActivity(intent);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    Log.d(<span class="string">&quot;ImplicitIntents&quot;</span>, <span class="string">&quot;Can&#x27;t handle this!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>接收链接请求信息</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//	新建一个项目,不同于上面两个同属一个项目，</span></span><br><span class="line"><span class="comment">//	一个TextView文本，接收到上一个程序打开浏览器的请求，把TextView显示为刚刚输入的网址</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 在OnCreate()中加入如下内容</span></span><br><span class="line"></span><br><span class="line">		Intent intent = getIntent();</span><br><span class="line">        <span class="comment">//  获取Intent数据,Intentdata 始终是一个 URI 对象：</span></span><br><span class="line">        Uri uri = intent.getData();</span><br><span class="line">        <span class="comment">//  检查以确保uri变量不是null. 如果该检查通过，则从该 URI 对象创建一个字符串：</span></span><br><span class="line">        <span class="keyword">if</span> (uri != <span class="keyword">null</span>) &#123;</span><br><span class="line">            String uri_string = <span class="string">&quot;URI:&quot;</span> + uri.toString();</span><br><span class="line">            <span class="comment">//	绑定控件</span></span><br><span class="line">            TextView textView = findViewById(R.id.textView);</span><br><span class="line">            textView.setText(uri_string);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//  &quot;URI: &quot;将上述部分提取到字符串资源 ( uri_label) 中。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>修改<code>AndroidManifest</code>清单文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--	在AndroidManifest清单文件中，更改该程序的权限 --&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">	            <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line">	            <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">	        <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">	        <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--     任何具有action.VIEW的Intent           --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.VIEW&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--     任何隐式的Intent。必须包含此类别才能使Activity接收到隐含的Intent --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.DEFAULT&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--      来自网页、电子邮件或其他来源的可浏览链接请求。          --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.BROWSABLE&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--      协议为http 和主机名的URI developer.android.com。          --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--      添加下面的data后，对链接有限制，只有收到http://devloper.android.com，该程序才会有反应;  不然启动上一个程序的打开浏览器，只会打开默认浏览器 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">&quot;http&quot;</span> <span class="attr">android:host</span>=<span class="string">&quot;developer.android.com&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Intent主要用途："><a href="#Intent主要用途：" class="headerlink" title="Intent主要用途："></a>Intent主要用途：</h2><ol>
+<li>启动Activity     </li>
+<li>启动服务</li>
+<li>传递广播</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Xrect</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://xrect.github.io/2022/01/20/Intent/">https://xrect.github.io/2022/01/20/Intent/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://xrect.github.io" target="_blank">乙冗</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Android/">Android</a><a class="post-meta__tags" href="/tags/Intent/">Intent</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/25/Content-Provider/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Content Provider</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/19/SharedPreferences%E5%AD%98%E5%82%A8/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SharedPreferences存储</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/01/26/Android%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90/" title="Android运行时权限"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-26</div><div class="title">Android运行时权限</div></div></a></div><div><a href="/2022/01/17/Android-Studio%E4%BD%BF%E7%94%A8Logcat%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/" title="Android Studio使用Logcat打印日志"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-17</div><div class="title">Android Studio使用Logcat打印日志</div></div></a></div><div><a href="/2022/01/25/Content-Provider/" title="Content Provider"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-25</div><div class="title">Content Provider</div></div></a></div><div><a href="/2022/01/19/SharedPreferences%E5%AD%98%E5%82%A8/" title="SharedPreferences存储"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-19</div><div class="title">SharedPreferences存储</div></div></a></div><div><a href="/2022/01/18/Toast%E7%94%A8%E6%B3%95/" title="Toast用法"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-18</div><div class="title">Toast用法</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/gallery/yr.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Xrect</div><div class="author-info__description">我与我周旋久</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Xrect" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:x.recth@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Intent%E5%92%8CIntent%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">Intent和Intent过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E5%BC%8FIntent"><span class="toc-number">1.1.</span> <span class="toc-text">显式Intent</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E5%BC%8FIntent"><span class="toc-number">1.2.</span> <span class="toc-text">隐式Intent</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Intent%E4%B8%BB%E8%A6%81%E7%94%A8%E9%80%94%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">Intent主要用途：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/26/Android%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90/" title="Android运行时权限"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Android运行时权限"/></a><div class="content"><a class="title" href="/2022/01/26/Android%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90/" title="Android运行时权限">Android运行时权限</a><time datetime="2022-01-26T04:42:38.000Z" title="发表于 2022-01-26 12:42:38">2022-01-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/25/Content-Provider/" title="Content Provider"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Content Provider"/></a><div class="content"><a class="title" href="/2022/01/25/Content-Provider/" title="Content Provider">Content Provider</a><time datetime="2022-01-25T09:51:00.000Z" title="发表于 2022-01-25 17:51:00">2022-01-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/20/Intent/" title="Intent"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Intent"/></a><div class="content"><a class="title" href="/2022/01/20/Intent/" title="Intent">Intent</a><time datetime="2022-01-20T05:19:18.000Z" title="发表于 2022-01-20 13:19:18">2022-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/19/SharedPreferences%E5%AD%98%E5%82%A8/" title="SharedPreferences存储"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SharedPreferences存储"/></a><div class="content"><a class="title" href="/2022/01/19/SharedPreferences%E5%AD%98%E5%82%A8/" title="SharedPreferences存储">SharedPreferences存储</a><time datetime="2022-01-19T09:13:05.000Z" title="发表于 2022-01-19 17:13:05">2022-01-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/18/Toast%E7%94%A8%E6%B3%95/" title="Toast用法"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Toast用法"/></a><div class="content"><a class="title" href="/2022/01/18/Toast%E7%94%A8%E6%B3%95/" title="Toast用法">Toast用法</a><time datetime="2022-01-18T03:02:18.000Z" title="发表于 2022-01-18 11:02:18">2022-01-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By Xrect</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
