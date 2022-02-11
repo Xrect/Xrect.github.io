@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xrect.github.io/2022/02/11/%E5%8D%95%E4%BD%8D%E5%92%8C%E5%B0%BA%E5%AF%B8/</loc>
+    
+    <lastmod>2022-02-11</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xrect.github.io/2022/01/29/Handler%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%9C%BA%E5%88%B6/</loc>
     
     <lastmod>2022-01-29</lastmod>
@@ -112,7 +121,7 @@
 
   <url>
     <loc>https://xrect.github.io/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -120,77 +129,77 @@
   
   <url>
     <loc>https://xrect.github.io/tags/Android/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/Logcat/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/%E6%97%A5%E5%BF%97/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/%E6%9D%83%E9%99%90/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/%E5%86%85%E5%AE%B9%E6%8F%90%E4%BE%9B%E5%99%A8/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/Handler/</loc>
-    <lastmod>2022-01-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xrect.github.io/tags/Intent/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/SharedPreferences/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xrect.github.io/tags/Intent/</loc>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/deploy/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/hexo/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -199,7 +208,7 @@
   
   <url>
     <loc>https://xrect.github.io/categories/Android%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

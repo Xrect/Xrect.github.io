@@ -166,6 +166,20 @@
       </tags>
   </entry>
   <entry>
+    <title>SharedPreferences存储</title>
+    <url>/2022/01/19/SharedPreferences%E5%AD%98%E5%82%A8/</url>
+    <content><![CDATA[<p>SharedPreferences使用键值对的方式来存储数据,支持多种不同的数据类型（整型，字符串，布尔类型）</p>
+<p>多用来存储应用偏好</p>
+<h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1>]]></content>
+      <categories>
+        <category>Android学习</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>SharedPreferences</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Intent</title>
     <url>/2022/01/20/Intent/</url>
     <content><![CDATA[<h1 id="Intent和Intent过滤器"><a href="#Intent和Intent过滤器" class="headerlink" title="Intent和Intent过滤器"></a>Intent和Intent过滤器</h1><p><code>Intent</code>是一个消息传递对象，可以从其他应用组件请求操作，常分为显示Intent和隐式Intent</p>
@@ -212,23 +226,49 @@
       </tags>
   </entry>
   <entry>
-    <title>SharedPreferences存储</title>
-    <url>/2022/01/19/SharedPreferences%E5%AD%98%E5%82%A8/</url>
-    <content><![CDATA[<p>SharedPreferences使用键值对的方式来存储数据,支持多种不同的数据类型（整型，字符串，布尔类型）</p>
-<p>多用来存储应用偏好</p>
-<h1 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h1>]]></content>
+    <title>Toast用法</title>
+    <url>/2022/01/18/Toast%E7%94%A8%E6%B3%95/</url>
+    <content><![CDATA[]]></content>
       <categories>
         <category>Android学习</category>
       </categories>
       <tags>
         <tag>Android</tag>
-        <tag>SharedPreferences</tag>
       </tags>
   </entry>
   <entry>
-    <title>Toast用法</title>
-    <url>/2022/01/18/Toast%E7%94%A8%E6%B3%95/</url>
-    <content><![CDATA[]]></content>
+    <title>单位和尺寸</title>
+    <url>/2022/02/11/%E5%8D%95%E4%BD%8D%E5%92%8C%E5%B0%BA%E5%AF%B8/</url>
+    <content><![CDATA[<h1 id="px与pt的区别"><a href="#px与pt的区别" class="headerlink" title="px与pt的区别"></a>px与pt的区别</h1><ol>
+<li><p>px: pixels(像素)</p>
+<blockquote>
+<p>不同设备显示效果相同</p>
+</blockquote>
+</li>
+<li><p>pt: point</p>
+<blockquote>
+<p>一个标准的长度单位，1pt=1/72英寸，用于印刷业，非常简单易用</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="dp与sp的作用"><a href="#dp与sp的作用" class="headerlink" title="dp与sp的作用"></a>dp与sp的作用</h1><ol>
+<li><p>dip: device independent pixels(设备独立像素)</p>
+<blockquote>
+<p>不同设备有不同的显示效果，和设备硬件有关，一般为了支持WVGA、HVGA和QVGA推荐使用这个，不依赖像素</p>
+</blockquote>
+</li>
+<li><p>dp: 就是dip</p>
+</li>
+<li><p>sp: scaled pixels</p>
+<blockquote>
+<p>主要用于字体显示best for textsize</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="LayoutParams"><a href="#LayoutParams" class="headerlink" title="LayoutParams"></a>LayoutParams</h1><p>LayoutParams相当于一个Layout的信息包，他封装了Layout的位置、高、宽等信息</p>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//	比如，用代码实现界面，需要LayoutParams配置</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    </span><br><span class="line">     <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"><span class="comment">//        setContentView(R.layout.activity_main);</span></span><br><span class="line"></span><br><span class="line">        LinearLayout linearLayout = <span class="keyword">new</span> LinearLayout(<span class="keyword">this</span>);</span><br><span class="line">        LinearLayout.LayoutParams layoutParams = <span class="keyword">new</span> LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);</span><br><span class="line">        linearLayout.setLayoutParams(layoutParams);</span><br><span class="line"></span><br><span class="line">        TextView textView = <span class="keyword">new</span> TextView(<span class="keyword">this</span>);</span><br><span class="line">        textView.setText(<span class="string">&quot;我是文本&quot;</span>);</span><br><span class="line">        ViewGroup.LayoutParams textLayoutParams = <span class="keyword">new</span> LinearLayout.LayoutParams(<span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">        textView.setLayoutParams(textLayoutParams);</span><br><span class="line"></span><br><span class="line">        linearLayout.addView(textView);</span><br><span class="line">        setContentView(linearLayout);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
         <category>Android学习</category>
       </categories>
