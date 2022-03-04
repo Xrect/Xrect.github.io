@@ -297,4 +297,46 @@
         <tag>hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Activity的生命周期和启动模式</title>
+    <url>/2022/03/02/Activity%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Android Studio上传项目到GitHub</title>
+    <url>/2022/03/04/Android-Studio%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE%E5%88%B0GitHub/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>推荐阅读：<a href="https://www.cnblogs.com/hyacinthLJP/p/14404437.html">Android Studio 上传本地项目到 GitHub 上</a></p>
+<blockquote>
+<p>从 2020 年 10 月 1 日开始，GitHub 上的所有新仓库都将用中性词「main」命名，取代原来的「master」，因为后者是一个容易让人联想到奴隶制的术语。（由于一场抗议活动导致）</p>
+</blockquote>
+<p><img src="C:\Users\23726\AppData\Roaming\Typora\typora-user-images\image-20220304135845739.png" alt="image-20220304135845739"></p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><p>关联GitHub账号时，不要点击add Account（你可能访问不了JetBrains的那个网页），直接点击左下角+号，再添加你自己的令牌就好了</p>
+<blockquote>
+<p>令牌注意保管好，建议备份一下</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Android学习</category>
+      </categories>
+      <tags>
+        <tag>Android</tag>
+        <tag>GitHub</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java核心API</title>
+    <url>/2022/03/02/Java%E6%A0%B8%E5%BF%83API/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Blog更改位置和Token到期更换</title>
+    <url>/2022/03/04/Blog%E6%9B%B4%E6%94%B9%E4%BD%8D%E7%BD%AE%E5%92%8CToken%E5%88%B0%E6%9C%9F%E6%9B%B4%E6%8D%A2/</url>
+    <content><![CDATA[<h1 id="Blog更改位置"><a href="#Blog更改位置" class="headerlink" title="Blog更改位置"></a>Blog更改位置</h1><p>node.js等配置没问题的话，可以直接移动博客源文件（就是包含.deploy_git、.github、source等所有文件信息的文件夹）</p>
+<p>可以直接剪切从C盘移到D盘</p>
+<h1 id="Token到期及更换"><a href="#Token到期及更换" class="headerlink" title="Token到期及更换"></a>Token到期及更换</h1><p>Blog用的Token最好设置的时间还是长一点吧，不像项目之类的</p>
+]]></content>
+      <categories>
+        <category>博客建站历程</category>
+      </categories>
+  </entry>
 </search>
