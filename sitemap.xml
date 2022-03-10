@@ -2,9 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://xrect.github.io/2022/03/05/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0/</loc>
+    <loc>https://xrect.github.io/2022/03/05/Android%E5%A4%8D%E4%B9%A0/</loc>
     
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xrect.github.io/2022/03/08/JVM/</loc>
+    
+    <lastmod>2022-03-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -13,16 +22,16 @@
   <url>
     <loc>https://xrect.github.io/2022/03/05/Java%E5%A4%8D%E4%B9%A0/</loc>
     
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-07</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://xrect.github.io/2022/03/05/Android%E5%A4%8D%E4%B9%A0/</loc>
+    <loc>https://xrect.github.io/2022/03/05/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0/</loc>
     
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-06</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -184,7 +193,7 @@
 
   <url>
     <loc>https://xrect.github.io/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -192,98 +201,98 @@
   
   <url>
     <loc>https://xrect.github.io/tags/Android/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/Logcat/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/%E6%97%A5%E5%BF%97/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/%E6%9D%83%E9%99%90/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/%E5%86%85%E5%AE%B9%E6%8F%90%E4%BE%9B%E5%99%A8/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/Handler/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/SharedPreferences/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/Intent/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/deploy/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/hexo/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/GitHub/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/Java/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -292,21 +301,21 @@
   
   <url>
     <loc>https://xrect.github.io/categories/Android%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/categories/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99%E5%8E%86%E7%A8%8B/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://xrect.github.io/categories/%E5%A4%8D%E4%B9%A0/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <lastmod>2022-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
