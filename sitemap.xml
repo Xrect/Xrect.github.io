@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xrect.github.io/2022/03/12/Git%E6%8F%90%E7%A4%BALF%E5%B0%86%E8%A2%ABCRLF%E6%9B%BF%E4%BB%A3/</loc>
+    
+    <lastmod>2022-03-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xrect.github.io/2022/03/05/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0/</loc>
     
     <lastmod>2022-03-12</lastmod>
@@ -322,6 +331,27 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://xrect.github.io/tags/Git/</loc>
+    <lastmod>2022-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xrect.github.io/tags/CRLF/</loc>
+    <lastmod>2022-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xrect.github.io/tags/LF/</loc>
+    <lastmod>2022-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -347,6 +377,13 @@
   
   <url>
     <loc>https://xrect.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2022-03-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xrect.github.io/categories/Git/</loc>
     <lastmod>2022-03-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
