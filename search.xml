@@ -351,7 +351,7 @@
 <p>四大组件都要在AndroidManifest.xml中注册才能生效</p>
 </blockquote>
 <h2 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h2><p>Android中，Activity是所有程序的根本，所有程序的流程都运行在Activity之中，Activity算是开发者遇到的最频繁的模块之一，以及用户最直接接触的模块。一个Android程序通常由多个Activity组成，这多个Activity相互关联，彼此跳转。假设当前Activity为A，新打开一个Activity B；那么Activity A将会进入返回栈，Activity B位与栈顶。</p>
-<h3 id="Activity的生命周期"><a href="#Activity的生命周期" class="headerlink" title="Activity的生命周期"></a>Activity的生命周期</h3><h4 id="1-典型情况下的生命周期分析"><a href="#1-典型情况下的生命周期分析" class="headerlink" title="1. 典型情况下的生命周期分析"></a>1. 典型情况下的生命周期分析</h4><p>（1）onCreate：表示Activity正在被创建，这是生命周期的第一个方法。可以在这个方法中做一些初始化工作，比如调用setContentView去加载布局资源、初始化Activity所需数据。</p>
+<h3 id="Activity的生命周期"><a href="#Activity的生命周期" class="headerlink" title="Activity的生命周期"></a>Activity的生命周期</h3><h4 id="典型情况下的生命周期分析"><a href="#典型情况下的生命周期分析" class="headerlink" title="典型情况下的生命周期分析"></a>典型情况下的生命周期分析</h4><p>（1）onCreate：表示Activity正在被创建，这是生命周期的第一个方法。可以在这个方法中做一些初始化工作，比如调用setContentView去加载布局资源、初始化Activity所需数据。</p>
 <p>（2）onRestart：表示Activity正在重新启动。一般情况下，当目前的Activity由不可见重新变为可见状态的时候，onRestart就会被调用。这种情况一般是用户行为导致的，比如用户按Home键切换到桌面或者用户打开了一个新的Activity，当前Activity就会暂停（即onPause和onStop被执行），接着用户又回到了这个Activity。</p>
 <p>（3）onStart：表示Activity正在被启动，即将开始，Activity已经可见了，但是没有出现在前台，无法和用户交互。可以理解为Activity已经显示了，但我们看不见。</p>
 <p>（4）onResume：表示Activity已经可见，并且出现在前台并开始活动了。</p>
@@ -462,18 +462,31 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//	一个最简单的自定义AsyncTask就可以这么写</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DownloadTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span>&lt;<span class="title">Void</span>, <span class="title">Integer</span>, <span class="title">Boolean</span>&gt; </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>需要重写的方法：</p>
-<p>1.onPreExecute()</p>
+<ol>
+<li>onPreExecute()</li>
+</ol>
 <blockquote>
 <p>这个方法会在后台任务开始执行之前调用，用于进行一些界面上的初始化操作，比如显示一个进度条对话框</p>
 </blockquote>
-<p>2.doInBackground(Params…)</p>
+<ol start="2">
+<li>doInBackground(Params…)</li>
+</ol>
 <blockquote>
 <p>这个方法中的代码都会在子线程中运行，我们应该在这里处理所有的耗时任务。任务一旦完成就可以通过return语句来将任务的执行结果返回，如果AsyncTask的第三个泛型参数指定是Void，就可以不返回任务执行结果。</p>
 </blockquote>
-<p>3.onProgressUpdate(Progress…)</p>
+<ol start="3">
+<li>onProgressUpdate(Progress…)</li>
+</ol>
 <blockquote>
-<p>当在后台任务中调用了publishProgress(Progress…) 方法后，onProgressUpdate(Progress…)方法就会很快被调用，该方法中携带的参数就是在后台任务中传递过来的。在这个方法中可以对UI进行操作，利用参数中的数值就</p>
+<p>当在后台任务中调用了publishProgress(Progress…) 方法后，onProgressUpdate(Progress…)方法就会很快被调用，该方法中携带的参数就是在后台任务中传递过来的。在这个方法中可以对UI进行操作，利用参数中的数值就可以对界面元素进行相应的更新</p>
 </blockquote>
+<ol start="4">
+<li><p>onPostExecute(Result)</p>
+<blockquote>
+<p>当后台任务执行完后通过return语句进行返回时，这个方法很快就会被调用。返回的数据会作为参数传递到此方法中，可以利用返回的数据来进行一些UI操作，比如提醒任务执行的结果，以及关闭进度条对话框</p>
+</blockquote>
+</li>
+</ol>
 <h3 id="服务的基本用法"><a href="#服务的基本用法" class="headerlink" title="服务的基本用法"></a>服务的基本用法</h3><h4 id="1-定义一个服务"><a href="#1-定义一个服务" class="headerlink" title="1.定义一个服务"></a>1.定义一个服务</h4><p>创建一个新的Service，命名为MyService。</p>
 <blockquote>
 <p>Exported属性表示是否允许除当前程序之外的其他程序访问这个服务，Enabled属性表示是否启用这个服务。</p>
@@ -821,6 +834,56 @@
     <content><![CDATA[<h1 id="Java复习"><a href="#Java复习" class="headerlink" title="Java复习"></a>Java复习</h1><h2 id="对象与类"><a href="#对象与类" class="headerlink" title="对象与类"></a>对象与类</h2><p>面向对象程序设计（简称OOP Object Oriented Programming）。Java是完全面向对象的。</p>
 <p>面向对象的程序是由对象组成的，每个对象包含对用户公开的特定功能部分和隐藏的实现部分。</p>
 <h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>​      </p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><ol>
+<li><p>接口使用interface来定义</p>
+</li>
+<li><p>Java中，接口和类是两个并列的结构（可以这么理解）</p>
+</li>
+<li><p>如何定义接口，定义接口中的成员</p>
+<ul>
+<li><p>JDK7及以前，只能定义全局变量和抽象方法</p>
+<ul>
+<li>全局变量：<code>public</code> <code>static</code> <code>final</code>的（书写时可以省略）</li>
+<li>抽象方法：<code>public</code> <code>abstract</code>的</li>
+</ul>
+</li>
+<li><p>JDK8：除了定义全局变量和抽象方法之外，还可以定义静态方法、默认方法</p>
+<blockquote>
+<p>（1）接口中定义的静态方法只能用接口调用</p>
+<p>（2）通过实现类的对象，可以调用接口中的默认方法，如果类重写了接口中的默认方法，调用时，仍然调用的是重写以后的方法</p>
+<p>（3）如果子类（或实现类）继承的父类和实现的接口声明了同名同参数的默认方法 </p>
+<p>那么子类在没有重写此方法的情况下，默认调用的父类中的同名同参数的方法——&gt;类优先原则</p>
+<p>（4）如果实现类实现了多个接口，而这多个接口定义了同名同参数的默认方法，那么实现类没有重写此方法的情况下，报错 ——&gt;接口冲突；<strong>此时需要我们必须在实现类中重写此方法</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>接口中不能不能定义构造器，意味着接口不能实例化</p>
+</li>
+<li><p>Java开发中，接口通过让类去实现（<code>implement</code>）的方式来使用，如果实现类覆盖了接口中的所有抽象方法，则此抽象方法尅实例化；如果实现类没有覆盖接口中所有的抽象方法，则此实现类仍为一个抽象类。</p>
+</li>
+<li><p>Java类可以实现多个接口，弥补了Java单继承的局限性</p>
+<blockquote>
+<p>格式 <code>class A extends B implements C,D,E</code></p>
+</blockquote>
+</li>
+<li><p>接口与接口之间可以继承，而且可以多继承</p>
+</li>
+<li><p>接口实际上可以看做一种规范</p>
+</li>
+<li><p>接口的具体使用，体现多态性</p>
+</li>
+</ol>
+<h3 id="接口的使用"><a href="#接口的使用" class="headerlink" title="接口的使用"></a>接口的使用</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 接口的使用</span></span><br><span class="line"><span class="comment"> * 接口使用上也满足多态性</span></span><br><span class="line"><span class="comment"> * 接口实际上是一种规范</span></span><br><span class="line"><span class="comment"> * 体会面向接口编程</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">USBTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Computer computer = <span class="keyword">new</span> Computer();</span><br><span class="line">        <span class="comment">//  1.创建了接口的非匿名实现类的非匿名对象</span></span><br><span class="line">        Flash flash = <span class="keyword">new</span> Flash();</span><br><span class="line">        computer.transferData(flash);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  2.创建了接口的非匿名实现类的匿名对象</span></span><br><span class="line">        computer.transferData(<span class="keyword">new</span> Flash());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  3.创建了接口的匿名实现类的非匿名对象</span></span><br><span class="line">        USB flash1 = <span class="keyword">new</span> USB() &#123;</span><br><span class="line">            <span class="comment">//  需要重写两个方法</span></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        computer.transferData(flash1);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//  4.创建了接口的匿名实现类的匿名对象</span></span><br><span class="line">        computer.transferData(<span class="keyword">new</span> USB() &#123;</span><br><span class="line">            <span class="comment">//  重写两个方法</span></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">USB</span> </span>&#123;</span><br><span class="line">    <span class="comment">//  常量：定义长、宽、最大最小传输速率</span></span><br><span class="line">    <span class="keyword">int</span> MIN = <span class="number">1</span>;    <span class="comment">//  省略了public static final</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>;   <span class="comment">//  省略了public abstract</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flash</span> <span class="keyword">implements</span> <span class="title">USB</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;U盘开启工作&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;U盘结束工作&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Computer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transferData</span><span class="params">(USB usb)</span> </span>&#123;</span><br><span class="line">        usb.start();</span><br><span class="line">        System.out.println(<span class="string">&quot;传输数据&quot;</span>);</span><br><span class="line">        usb.stop();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
 <h2 id="Java核心API"><a href="#Java核心API" class="headerlink" title="Java核心API"></a>Java核心API</h2><h3 id="系统相关类"><a href="#系统相关类" class="headerlink" title="系统相关类"></a>系统相关类</h3><h4 id="System类"><a href="#System类" class="headerlink" title="System类"></a>System类</h4><ol>
 <li><p>System类代表当前Java程序的运行平台 </p>
 </li>
@@ -1187,6 +1250,32 @@
 <p>随机选择一个数放到数组最后面，然后划分出<code>&lt;这个数的区域（放在左边）</code>、<code>&gt;这个数的区域（放在右边）</code>、<code>==这个数的放在中间</code></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//  快速排序</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> R)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="keyword">null</span> || L &gt;= R) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//  随机选一个数,和最右边交换位置</span></span><br><span class="line">    swap(arr, L + (<span class="keyword">int</span>) (Math.random() * (R - L + <span class="number">1</span>)), R);</span><br><span class="line">    <span class="comment">//  返回的是等于区域的左边界和右边界</span></span><br><span class="line">    <span class="keyword">int</span>[] p = partition(arr, L, R);</span><br><span class="line">    quickSort(arr, L, p[<span class="number">0</span>] - <span class="number">1</span>);</span><br><span class="line">    quickSort(arr, p[<span class="number">1</span>] + <span class="number">1</span>, R);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//  返回等于区域的边界</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] partition(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> L, <span class="keyword">int</span> R) &#123;</span><br><span class="line">    <span class="comment">//  小于区右边界</span></span><br><span class="line">    <span class="keyword">int</span> less = L - <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//  大于区左边界</span></span><br><span class="line">    <span class="keyword">int</span> more = R;</span><br><span class="line">    <span class="keyword">while</span> (L &lt; more) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[L] &lt; arr[R]) &#123;</span><br><span class="line">            swap(arr, ++less, L++);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (arr[L] &gt; arr[R]) &#123;</span><br><span class="line">            swap(arr, --more, L);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            L++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(arr, more, R);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;less + <span class="number">1</span>, more&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">    arr[i] = arr[j];</span><br><span class="line">    arr[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+
+
+<p><img src="C:\Users\23726\AppData\Roaming\Typora\typora-user-images\image-20220316142013576.png" alt="image-20220316142013576"></p>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">HashMap&lt;Key,Value&gt;</span><br><span class="line">HashSet&lt;Key&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// HashMap对于包装类Integer、String等按值传递，对于自定义类型，按引用传递</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>哈希表的增删改查的时间复杂度为O(1)</p>
+</blockquote>
+<p><img src="C:\Users\23726\AppData\Roaming\Typora\typora-user-images\image-20220316145903770.png" alt="image-20220316145903770"></p>
+<h3 id="有序表"><a href="#有序表" class="headerlink" title="有序表"></a>有序表</h3><p><img src="C:\Users\23726\AppData\Roaming\Typora\typora-user-images\image-20220316150945560.png" alt="image-20220316150945560"></p>
+<h3 id="链表解题的方法论"><a href="#链表解题的方法论" class="headerlink" title="链表解题的方法论"></a>链表解题的方法论</h3><ol>
+<li><p>对于笔试，不用太在乎空间复杂度，一切为了时间复杂度</p>
+<blockquote>
+<p>技巧：额外数据结构记录</p>
+</blockquote>
+</li>
+<li><p>对于面试，时间复杂度依然放在第一位，但是一定要找到空间最省的方法</p>
+<blockquote>
+<p>技巧：快慢指针</p>
+</blockquote>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>复习</category>
